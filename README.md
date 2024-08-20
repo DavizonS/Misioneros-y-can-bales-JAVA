@@ -33,7 +33,7 @@ Para jugar, simplemente sigue estos pasos:
 
 ## 🛠️ Tecnologías Utilizadas
 
-- **Lenguaje:** [Python](https://www.python.org/)
+- **Lenguaje:** [JAVA](https://www.java.com/es/)
 - **Bibliotecas:** Ninguna biblioteca externa es requerida.
 
 ## 🧠 Estrategias y Consejos
