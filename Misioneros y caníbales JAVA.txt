@@ -1,0 +1,96 @@
+import java.util.Scanner;
+
+public class MisionerosCanibales {
+    private int misionerosIzquierda;
+    private int canibalesIzquierda;
+    private int misionerosDerecha;
+    private int canibalesDerecha;
+    private boolean barcoEnIzquierda; // true es para izquierda y el false para derecha
+
+    public MisionerosCanibales(int misionerosIzquierda, int canibalesIzquierda) {
+        this.misionerosIzquierda = misionerosIzquierda;
+        this.canibalesIzquierda = canibalesIzquierda;
+        this.misionerosDerecha = 0;
+        this.canibalesDerecha = 0;
+        this.barcoEnIzquierda = true;
+    }
+
+    public void mover(int numMisioneros, int numCanibales) {
+        if (numMisioneros + numCanibales < 1 || numMisioneros + numCanibales > 2) {
+            System.out.println("El bote debe llevar uno o dos pasajeros.");
+            return;
+        }
+
+        if (barcoEnIzquierda) {
+            if (numMisioneros > misionerosIzquierda || numCanibales > canibalesIzquierda) {
+                System.out.println("No hay suficientes misioneros o canibales en la isla izquierda.");
+                return;
+            }
+        } else {
+            if (numMisioneros > misionerosDerecha || numCanibales > canibalesDerecha) {
+                System.out.println("No hay suficientes misioneros o canibales en la isla derecha.");
+                return;
+            }
+        }
+
+        int misionerosMovidos = 0;
+        int canibalesMovidos = 0;
+
+        if (barcoEnIzquierda) {
+            misionerosIzquierda -= numMisioneros;
+            misionerosMovidos = numMisioneros;
+            canibalesIzquierda -= numCanibales;
+            canibalesMovidos = numCanibales;
+            misionerosDerecha += misionerosMovidos;
+            canibalesDerecha += canibalesMovidos;
+        } else {
+            misionerosDerecha -= numMisioneros;
+            misionerosMovidos = numMisioneros;
+            canibalesDerecha -= numCanibales;
+            canibalesMovidos = numCanibales;
+            misionerosIzquierda += misionerosMovidos;
+            canibalesIzquierda += canibalesMovidos;
+        }
+
+        barcoEnIzquierda = !barcoEnIzquierda;
+        mostrarEstado();
+
+        if ((misionerosIzquierda < canibalesIzquierda && misionerosIzquierda > 0) || (misionerosDerecha < canibalesDerecha && misionerosDerecha > 0)) {
+            System.out.println("Has perdido! Hay mas canibales que misioneros en una de las islas.");
+            return;
+        }
+
+        if (misionerosIzquierda == 0 && canibalesIzquierda == 0) {
+            System.out.println("Felicidades, has ganado!");
+            return;
+        }
+    }
+
+    public void mostrarEstado() {
+        System.out.println("Izquierda: " + misionerosIzquierda + " misioneros, " + canibalesIzquierda + " canibales");
+        System.out.println("Derecha: " + misionerosDerecha + " misioneros, " + canibalesDerecha + " canibales");
+        System.out.println("Barco en la " + (barcoEnIzquierda ? "izquierda" : "derecha"));
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Bienvenido al juego de Misioneros y Canibales!");
+        System.out.println("Objetivo: Mover todos los misioneros y canibales a la isla derecha para ganar.");
+        System.out.println("    Isla izquierda: 3 misioneros, 3 canibales");
+        System.out.println("    Isla derecha: 0 misioneros, 0 canibales");
+        System.out.println("    Barco en la derecha");
+        System.out.println("Instrucciones: Introduce la cantidad de misioneros y canibales a mover.");
+
+        MisionerosCanibales juego = new MisionerosCanibales(3, 3);
+
+        while (!(juego.misionerosIzquierda == 0 && juego.canibalesIzquierda == 0)) {
+            System.out.println("Ingrese el numero de misioneros para mover:");
+            int misioneros = scanner.nextInt();
+            System.out.println("Ingrese el numero de canibales para mover:");
+            int canibales = scanner.nextInt();
+            juego.mover(misioneros, canibales);
+        }
+
+        scanner.close();
+    }
+}
