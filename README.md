@@ -40,21 +40,7 @@ Para jugar, simplemente sigue estos pasos:
 
 - Empieza moviendo dos caníbales o un misionero y un caníbal.
 - Siempre verifica que en ninguna orilla los caníbales superen en número a los misioneros.
-
-## 💬 Contribuir
-
-¡Contribuciones son bienvenidas! Si tienes ideas para mejorar el juego o has encontrado un bug, por favor sigue estos pasos:
-
-1. **Fork este repositorio**
-2. **Crea una nueva rama** (`git checkout -b feature/mi-nueva-caracteristica`)
-3. **Realiza tus cambios** y haz commit (`git commit -am 'Añadir nueva característica'`)
-4. **Haz push a la rama** (`git push origin feature/mi-nueva-caracteristica`)
-5. **Abre un Pull Request**
-
-## 📜 Licencia
-
-Este proyecto está licenciado bajo la [MIT License](LICENSE).
-
+  
 ---
 
 ✨ **Diviértete resolviendo el rompecabezas y asegurando la seguridad de todos!** ✨
